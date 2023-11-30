@@ -1,9 +1,14 @@
-name: push-master
+name: pull-request-develop
 
 on:
-  push:
+  merge_group:
+  pull_request:
     branches:
-      - master
+      - develop
+# Only run 1 of this workflow at a time per PR
+concurrency:
+  group: chainlink-functions-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   PACKAGES: "" # TODO: setup
@@ -17,6 +22,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          fetch-depth: 0
       - name: Set matrix packages
         id: set-matrix-packages
         shell: bash
@@ -34,6 +41,7 @@ jobs:
 
   ci-lint:
     runs-on: ubuntu-latest
+    needs: [init]
     permissions:
       id-token: write
       contents: read
@@ -55,6 +63,17 @@ jobs:
           go-version-file: go.mod
           golangci-lint-version: "v1.53.2"
           golangci-lint-args: --out-format colored-line-number,checkstyle:golangci-lint-report.xml ${{ needs.init.outputs.lint_args_packages }}
+
+  ci-lint-misc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ci-lint-misc
+        uses: smartcontractkit/.github/actions/ci-lint-misc@9e7cc0779934cae4a9028b8588c9adb64d8ce68c # ci-lint-misc@0.1.0
+        with:
+          # grafana inputs
+          metrics-job-name: ci-lint-misc
+          gc-basic-auth: ${{ secrets.GRAFANA_CLOUD_BASIC_AUTH }}
+          gc-host: ${{ secrets.GRAFANA_CLOUD_HOST }}
 
   ci-test:
     runs-on: ubuntu-latest
