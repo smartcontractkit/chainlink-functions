@@ -1,4 +1,4 @@
-package chainlink_functions
+package main
 
 import "fmt"
 
