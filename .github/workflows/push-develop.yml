@@ -83,7 +83,6 @@ jobs:
           go-test-cmd: make test-ci
 
   ci-sonarqube:
-    needs: [ci-lint, ci-test]
     if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
