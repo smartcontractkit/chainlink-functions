@@ -107,7 +107,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ci-sonarqube
-        uses: smartcontractkit/.github/actions/ci-sonarqube@cc4cbbd6d39a8e84915b356379a4ef6a16dceaf9 # ci-sonarqube@0.2.0
+        # TODO update to pin a specific commit once ready
+        uses: smartcontractkit/.github/actions/ci-sonarqube@re-2162/update-ci-sonarqube-lint
         with:
           # grafana inputs
           metrics-job-name: ci-sonarqube
@@ -116,3 +117,4 @@ jobs:
           # sonarqube inputs
           sonar-token: ${{ secrets.SONAR_TOKEN }}
           sonar-host-url: ${{ secrets.SONAR_HOST_URL }}
+          include-lint: true

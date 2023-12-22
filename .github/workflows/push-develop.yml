@@ -87,6 +87,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ci-sonarqube
+        # TODO update to newest release
         uses: smartcontractkit/.github/actions/ci-sonarqube@cc4cbbd6d39a8e84915b356379a4ef6a16dceaf9 # ci-sonarqube@0.2.0
         with:
           # grafana inputs
@@ -96,3 +97,4 @@ jobs:
           # sonarqube inputs
           sonar-token: ${{ secrets.SONAR_TOKEN }}
           sonar-host-url: ${{ secrets.SONAR_HOST_URL }}
+          # include-lint: true
