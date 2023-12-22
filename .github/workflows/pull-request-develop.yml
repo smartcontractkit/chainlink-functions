@@ -48,7 +48,7 @@ jobs:
       actions: read
     steps:
       - name: ci-lint
-        uses: smartcontractkit/.github/actions/ci-lint-go@9e7cc0779934cae4a9028b8588c9adb64d8ce68c # ci-lint-go@0.1.0
+        uses: smartcontractkit/.github/actions/ci-lint-go@9e7cc0779934cae4a9028b8588c9adb64d8ce68c # 0.1.0
         with:
           # grafana inputs
           metrics-job-name: ci-lint
@@ -68,7 +68,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ci-lint-misc
-        uses: smartcontractkit/.github/actions/ci-lint-misc@9e7cc0779934cae4a9028b8588c9adb64d8ce68c # ci-lint-misc@0.1.0
+        uses: smartcontractkit/.github/actions/ci-lint-misc@9e7cc0779934cae4a9028b8588c9adb64d8ce68c # 0.1.0
         with:
           # grafana inputs
           metrics-job-name: ci-lint-misc
@@ -83,7 +83,7 @@ jobs:
       actions: read
     steps:
       - name: ci-test
-        uses: smartcontractkit/.github/actions/ci-test-go@9e7cc0779934cae4a9028b8588c9adb64d8ce68c # ci-test-go@0.1.0
+        uses: smartcontractkit/.github/actions/ci-test-go@9e7cc0779934cae4a9028b8588c9adb64d8ce68c # 0.1.0
         with:
           # grafana inputs
           metrics-job-name: ci-test
@@ -107,8 +107,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ci-sonarqube
-        # TODO update to pin a specific commit once ready
-        uses: smartcontractkit/.github/actions/ci-sonarqube@re-2162/update-ci-sonarqube-lint
+        uses: smartcontractkit/.github/actions/ci-sonarqube@21dd965fed78320538307730bb87f46227b2bd53 # 0.3.0
         with:
           # grafana inputs
           metrics-job-name: ci-sonarqube
