@@ -1,3 +1,7 @@
+# IDE files
 .idea
+
+# Reports
 coverage.txt
 output.txt
+*.log
